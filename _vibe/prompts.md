@@ -55,3 +55,16 @@ I've updated CLAUDE.md, here's the new content: @CLAUDE.md . Consider it from no
 ```
 I've already commited CLAUDE.md for you. But, please, amend the commit adding the prompts file.
 ```
+
+### commit: (this commit)
+```
+Let's get rid of `__pycache__` directories. Change the makefile to avoid their creation.
+```
+
+```
+Before commiting, remove current `__pycache__` directories.
+```
+
+```
+commit
+```

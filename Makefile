@@ -1,4 +1,5 @@
 PICCOLO_CONF := steerer.piccolo_conf
+export PYTHONDONTWRITEBYTECODE := 1
 
 .PHONY: install test typecheck lint format check migrations migrate migration-status
 
