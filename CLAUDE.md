@@ -6,6 +6,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Save every prompt to `_vibe/prompts.md`. When committing changes, add prompts file too. Don't commit automatically. Ask for confirmation first.
 
+Assert tests pass before you show suggestions/results to me.
+
 ## Project
 
 Steerer is a URL redirection FastAPI service backed by PostgreSQL. Three endpoints: create a named alias for a URL, redirect an alias to its destination URL, and report hit counts. See `_vibe/plan-v2.md` for full business rules and `_vibe/issue-{n}.md` for work items.
@@ -54,7 +56,7 @@ Tests use FastAPI's `TestClient`. No DB mocking — tests hit a real database co
 
 ## Code Style
 
-- Return early; prefer flat code over nested conditions.
+- Return early; prefer flat code over nested conditions. Avoid recursion. Prefer list/dict/set comprehensions over loop iteration. Prefer tuples over lists. Prefer sets over dicts.
 - Minimal logic in views — business logic belongs in service modules.
 - No `__pycache__` directories (`PYTHONDONTWRITEBYTECODE=1` is exported by the Makefile).
 - Pre-commit hook runs `lint → typecheck`.
