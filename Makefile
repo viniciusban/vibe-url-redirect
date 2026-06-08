@@ -1,6 +1,6 @@
 PICCOLO_CONF := steerer.piccolo_conf
 
-.PHONY: install test typecheck lint format migrations migrate migration-status
+.PHONY: install test typecheck lint format check migrations migrate migration-status
 
 install:
 	uv sync
@@ -15,6 +15,8 @@ typecheck:
 
 lint:
 	uv run ruff check src/
+
+check: lint typecheck test
 
 format:
 	uv run ruff check --select I --fix src/ && uv run ruff format src/

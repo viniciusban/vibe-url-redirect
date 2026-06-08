@@ -35,3 +35,8 @@ Change the health check endpoint to return current date and time
 ```
 I don't see changes in the source code when I run the steerer service in docker compose. Make the docker container use current source code without the need to rebuild.
 ```
+
+### commit: (this commit)
+```
+Let's improve makefile. Create a command to perform lint, typecheck and test at once. Don't change current existing commands.
+```
