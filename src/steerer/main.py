@@ -1,4 +1,4 @@
-from datetime import datetime, timezone
+from datetime import datetime
 
 from fastapi import FastAPI
 
@@ -10,4 +10,4 @@ app.include_router(routes_router)
 
 @app.get("/")
 async def health_check() -> dict[str, str]:
-    return {"datetime": datetime.now(timezone.utc).isoformat()}
+    return {"datetime": datetime.utcnow().isoformat()}

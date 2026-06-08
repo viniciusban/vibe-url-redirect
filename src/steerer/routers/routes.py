@@ -1,4 +1,4 @@
-from datetime import datetime, timezone
+from datetime import datetime
 
 from fastapi import APIRouter
 from fastapi.responses import JSONResponse
@@ -9,10 +9,6 @@ from steerer.services import slugify
 from steerer.tables import UrlRoute
 
 router = APIRouter(prefix="/routes")
-
-
-def _utcnow() -> datetime:
-    return datetime.now(timezone.utc).replace(tzinfo=None)
 
 
 @router.post("/")
@@ -34,7 +30,7 @@ async def create_route(request: CreateRouteRequest) -> JSONResponse:
         alias=alias,
         destination_url=request.destination_url,
         expiration=request.expiration.replace(tzinfo=None),
-        created_at=_utcnow(),
+        created_at=datetime.utcnow(),
         hits=0,
     ).save().run()
 

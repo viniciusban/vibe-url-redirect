@@ -108,3 +108,20 @@ commit
 ```
 Implement issue 2
 ```
+
+### commit: (this commit)
+```
+Use explicit Python utcnow() instead of _utcnow() in @src/steerer/routers/routes.py
+```
+
+```
+Not yet. Use datetime.utcnow
+```
+
+```
+Do the same to the health check endpoint
+```
+
+```
+commit
+```
