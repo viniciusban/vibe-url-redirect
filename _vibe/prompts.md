@@ -152,3 +152,16 @@ I sent invalid expiration to POST /routes/ and got status code 422 with this bod
 ```
 Well done. commit
 ```
+
+### commit: (this commit)
+```
+Is there a way to move this validation away from the route?
+```
+
+```
+yes, go ahead
+```
+
+```
+commit
+```
