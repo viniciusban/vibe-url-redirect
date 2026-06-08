@@ -14,12 +14,12 @@ typecheck:
 	uv run mypy src/
 
 lint:
-	uv run ruff check src/
+	uv run ruff check src/ tests/
 
 check: lint typecheck test
 
 format:
-	uv run ruff check --select I --fix src/ && uv run ruff format src/
+	uv run ruff check --select I --fix src/ tests/ && uv run ruff format src/ tests/
 
 migrations:
 	PICCOLO_CONF=$(PICCOLO_CONF) uv run piccolo migrations new steerer --auto

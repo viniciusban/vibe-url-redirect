@@ -40,3 +40,8 @@ I don't see changes in the source code when I run the steerer service in docker 
 ```
 Let's improve makefile. Create a command to perform lint, typecheck and test at once. Don't change current existing commands.
 ```
+
+### commit: (this commit)
+```
+Commands format and lint must also check tests directory
+```
