@@ -81,3 +81,12 @@ Don't change its title. Add the completion statement in another paragraph.
 ```
 commit
 ```
+
+### commit: (this commit)
+```
+/init
+```
+
+```
+yes
+```
