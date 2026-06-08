@@ -208,6 +208,19 @@ commit
 
 ### commit: (this commit)
 ```
+Let's refactor tests for POST /routes/ and remove those related to invalid names because we're already covering it through tests on slugify. Keep only one to illustrate the case and assert the response.
+```
+
+```
+Good. Also remove test_create_route_strips_name_whitespace
+```
+
+```
+commit
+```
+
+### commit: (this commit)
+```
 Guarantee that an alias has at least one valid character other than a dash in POST /routes/. Otherwise, return error reason "Invalid name".
 ```
 
