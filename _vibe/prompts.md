@@ -30,3 +30,8 @@ From now on, save every prompt to @_vibe/prompts.md and commit along with any ch
 ```
 Change the health check endpoint to return current date and time
 ```
+
+### commit: (this commit)
+```
+I don't see changes in the source code when I run the steerer service in docker compose. Make the docker container use current source code without the need to rebuild.
+```
