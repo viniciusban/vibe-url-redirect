@@ -230,6 +230,15 @@ Cool. commit
 
 ### commit: (this commit)
 ```
+Is it possible to move the empty alias validation to CreateRouteRequest? I want the same response.
+```
+
+```
+Great! commit
+```
+
+### commit: (this commit)
+```
 Guarantee that an alias has at least one valid character other than a dash in POST /routes/. Otherwise, return error reason "Invalid name".
 ```
 

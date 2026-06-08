@@ -4,12 +4,7 @@ from fastapi import APIRouter
 from fastapi.responses import JSONResponse
 
 from steerer import logging as steerer_logging
-from steerer.schemas import (
-    CreateRouteRequest,
-    CreateRouteResponse,
-    DuplicateRouteError,
-    InvalidFieldError,
-)
+from steerer.schemas import CreateRouteRequest, CreateRouteResponse, DuplicateRouteError
 from steerer.tables import UrlRoute
 
 router = APIRouter(prefix="/routes")
@@ -17,15 +12,6 @@ router = APIRouter(prefix="/routes")
 
 @router.post("/")
 async def create_route(request: CreateRouteRequest) -> JSONResponse:
-    if not request.alias:
-        steerer_logging.log_action("create route", request.alias, 4, "Invalid name")
-        return JSONResponse(
-            status_code=400,
-            content=InvalidFieldError(
-                error_code=4, reason="Invalid name", alias=request.alias
-            ).model_dump(),
-        )
-
     count = await UrlRoute.count().where(UrlRoute.alias == request.alias).run()
     if count:
         steerer_logging.log_action("create route", request.alias, 1, "already exists")

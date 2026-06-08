@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from pydantic import BaseModel, computed_field, field_validator
+from pydantic import BaseModel, computed_field, field_validator, model_validator
 
 from steerer.services import slugify
 
@@ -14,6 +14,12 @@ class CreateRouteRequest(BaseModel):
     @property
     def alias(self) -> str:
         return slugify(self.name)
+
+    @model_validator(mode="after")
+    def validate_alias(self) -> "CreateRouteRequest":
+        if not self.alias:
+            raise ValueError("Invalid name")
+        return self
 
     @field_validator("name", mode="before")
     @classmethod
