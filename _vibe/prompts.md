@@ -1,0 +1,27 @@
+# Prompts
+
+## Session — 2026-06-08
+
+### commit: 5e9b446 Initial prompt v2
+```
+@_vibe/initial-prompt-v2.md
+```
+
+### commit: b30378b Add plan v2 and issue files for Steerer
+```
+Consider @_vibe/initial-prompt-v2.md but start from scratch and ignore any existing plan and memory files.
+```
+
+```
+commit
+```
+
+### commit: 75ebd60 Implement Issue 1: project scaffolding and development environment
+```
+implement issue 1
+```
+
+### commit: (this commit)
+```
+From now on, save every prompt to @_vibe/prompts.md and commit along with any changes.
+```
