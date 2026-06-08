@@ -8,6 +8,14 @@ class CreateRouteRequest(BaseModel):
     destination_url: str
     expiration: datetime
 
+    @field_validator("name", mode="before")
+    @classmethod
+    def strip_name(cls, v: str) -> str:
+        v = v.strip()
+        if not v:
+            raise ValueError("name is required")
+        return v
+
     @field_validator("expiration", mode="before")
     @classmethod
     def parse_expiration(cls, v: object) -> object:

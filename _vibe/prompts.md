@@ -174,3 +174,21 @@ make name required in POST /routes/. Return error with reason "name is required"
 ```
 commit
 ```
+
+### commit: (this commit)
+```
+Remove leading and remaining spaces from name in POST /routes/. Consider empty name as missing. Create tests to assert that.
+```
+
+```
+commit
+```
+
+### commit: (this commit)
+```
+Consider name always being str in the validator
+```
+
+```
+commit
+```

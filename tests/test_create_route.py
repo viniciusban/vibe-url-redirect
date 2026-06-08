@@ -53,6 +53,40 @@ def test_create_route_duplicate(client, caplog):
     }
 
 
+def test_create_route_strips_name_whitespace(client):
+    response = client.post("/routes/", json={
+        "name": "  My Route  ",
+        "destination_url": "https://example.com",
+        "expiration": "2027-01-01 00:00:00",
+    })
+
+    assert response.status_code == 200
+    assert response.json() == {"alias": "my-route"}
+
+
+def test_create_route_empty_name(client, caplog):
+    with caplog.at_level(logging.INFO, logger="steerer"):
+        response = client.post("/routes/", json={
+            "name": "   ",
+            "destination_url": "https://example.com",
+            "expiration": "2027-01-01 00:00:00",
+        })
+
+    assert response.status_code == 400
+    assert response.json() == {
+        "error_code": 4, "reason": "name is required", "alias": ""
+    }
+
+    steerer_records = [r for r in caplog.records if r.name == "steerer"]
+    assert len(steerer_records) == 1
+    assert json.loads(steerer_records[0].message) == {
+        "action": "create route",
+        "alias": "",
+        "error_code": 4,
+        "reason": "name is required",
+    }
+
+
 def test_create_route_missing_name(client, caplog):
     with caplog.at_level(logging.INFO, logger="steerer"):
         response = client.post("/routes/", json={

@@ -22,7 +22,13 @@ async def validation_exception_handler(
     errors = exc.errors()
     field = str(errors[0]["loc"][-1]) if errors else "field"
     error_type = errors[0].get("type", "") if errors else ""
-    reason = f"{field} is required" if error_type == "missing" else f"invalid {field}"
+    if error_type == "missing":
+        reason = f"{field} is required"
+    elif error_type == "value_error":
+        ctx = errors[0].get("ctx", {})
+        reason = str(ctx.get("error", f"invalid {field}"))
+    else:
+        reason = f"invalid {field}"
 
     alias = ""
     try:
