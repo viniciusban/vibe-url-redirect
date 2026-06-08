@@ -45,3 +45,13 @@ Let's improve makefile. Create a command to perform lint, typecheck and test at 
 ```
 Commands format and lint must also check tests directory
 ```
+
+### commit: 5716902 Tell Claude to ask for permission before committing
+```
+I've updated CLAUDE.md, here's the new content: @CLAUDE.md . Consider it from now on.
+```
+
+### commit: (amend 5716902)
+```
+I've already commited CLAUDE.md for you. But, please, amend the commit adding the prompts file.
+```

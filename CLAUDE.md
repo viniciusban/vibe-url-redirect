@@ -2,4 +2,4 @@
 
 ## Prompts log
 
-Save every user prompt to `_vibe/prompts.md` and commit it alongside any other changes. If a turn has no file changes, commit the prompt update alone.
+Save every prompt to @_vibe/prompts.md. When commiting changes, add prompts file too. Don't commit automatically. Ask for confirmation first.
