@@ -239,6 +239,15 @@ Great! commit
 
 ### commit: (this commit)
 ```
+Now, let's improve validation for destination url. It must follow the same rules as for name.
+```
+
+```
+commit
+```
+
+### commit: (this commit)
+```
 Guarantee that an alias has at least one valid character other than a dash in POST /routes/. Otherwise, return error reason "Invalid name".
 ```
 
