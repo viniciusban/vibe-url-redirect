@@ -192,3 +192,20 @@ Consider name always being str in the validator
 ```
 commit
 ```
+
+### commit: (this commit)
+```
+Guarantee that an alias has at least one valid character other than a dash in POST /routes/. Otherwise, return error reason "Invalid name".
+```
+
+```
+Almost there, but not yet. You cannot accept an empty alias or an alias with only a dash.
+```
+
+```
+Sorry, you were correct. The function to slugify already strips dashes from the result. Reject only empty alias again.
+```
+
+```
+commit
+```

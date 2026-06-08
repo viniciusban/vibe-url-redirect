@@ -109,6 +109,39 @@ def test_create_route_missing_name(client, caplog):
     }
 
 
+def test_create_route_name_all_special_chars(client, caplog):
+    with caplog.at_level(logging.INFO, logger="steerer"):
+        response = client.post("/routes/", json={
+            "name": "!@#$%",
+            "destination_url": "https://example.com",
+            "expiration": "2027-01-01 00:00:00",
+        })
+
+    assert response.status_code == 400
+    assert response.json() == {"error_code": 4, "reason": "Invalid name", "alias": ""}
+
+    steerer_records = [r for r in caplog.records if r.name == "steerer"]
+    assert len(steerer_records) == 1
+    assert json.loads(steerer_records[0].message) == {
+        "action": "create route",
+        "alias": "",
+        "error_code": 4,
+        "reason": "Invalid name",
+    }
+
+
+def test_create_route_name_only_dashes(client, caplog):
+    with caplog.at_level(logging.INFO, logger="steerer"):
+        response = client.post("/routes/", json={
+            "name": "---",
+            "destination_url": "https://example.com",
+            "expiration": "2027-01-01 00:00:00",
+        })
+
+    assert response.status_code == 400
+    assert response.json() == {"error_code": 4, "reason": "Invalid name", "alias": ""}
+
+
 def test_create_route_invalid_expiration(client, caplog):
     with caplog.at_level(logging.INFO, logger="steerer"):
         response = client.post("/routes/", json={
