@@ -125,3 +125,12 @@ Do the same to the health check endpoint
 ```
 commit
 ```
+
+### commit: (this commit)
+```
+Let tests for slugify separate from anything else
+```
+
+```
+commit
+```

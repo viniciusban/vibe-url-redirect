@@ -51,23 +51,3 @@ def test_create_route_duplicate(client, caplog):
         "error_code": 1,
         "reason": "already exists",
     }
-
-
-def test_slugify_spaces():
-    from steerer.services import slugify
-    assert slugify("hello world") == "hello-world"
-
-
-def test_slugify_uppercase():
-    from steerer.services import slugify
-    assert slugify("Hello World") == "hello-world"
-
-
-def test_slugify_consecutive_hyphens():
-    from steerer.services import slugify
-    assert slugify("hello   world") == "hello-world"
-
-
-def test_slugify_special_chars():
-    from steerer.services import slugify
-    assert slugify("hello!@#world") == "hello-world"
