@@ -72,17 +72,11 @@ Run lint and check type hints in precommit hook. Don't run mypy in test code. Fo
 * apply migration onto the db
 * show current applied migration
 
-### Code style
-
-Use early return as much as possible. Prefer flat code over nested conditions. Prefer readibility over performance (when in doubt, ask). Put as less logic as possible in views. Move business logic to services.
-
 ### Development environment
 
 Run using Docker Compose: Steerer service + database. Set dbname to "steerer_db" to run in development environment.
 
 
-## Prompting and Claude Code Behaviour
+## Planning
 
-Save all my prompts to @vibe/PROMPTS.md along with every commit. Add relevant instructions to CLAUDE.md. Add both to the repository. Don't change CLAUDE.md without my permission. Don't mix CLAUDE.md changes with other modifications in the same commit. Assert tests pass before you show suggestions/results to me.
-
-Make a plan and show it in topics. An overview first, followed by details about business rules, tests, API endpoints, database, code structure. After that, propose user stories in vertical slices as issues on Github. Include the criteria of done. Save the whole plan to @vibe/PRD.md. Don't change anything else.
+Make a plan and show it in topics. An overview first, then details about business rules, tests, API endpoints, database, code and directory structure. After that, list user stories in vertical slices as issues on Github. Include the criteria of done in all of them. Feel free to iterate over these instructions as necessary and improve anything. When that's the case, highlight it and explain why. Save the whole plan to @_vibe/initial-plan.md. Don't change anything else.
