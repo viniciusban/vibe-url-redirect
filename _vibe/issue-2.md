@@ -37,6 +37,6 @@ Implement route creation with slugification, uniqueness check, and structured lo
 - **Duplicate alias**: second POST with equivalent name → 400, body `{"error_code": 1, "reason": "already exists"}`, log with error_code 1.
 - **Missing/blank name**: → 400, body `{"error_code": 4, "reason": "name is required"}`.
 - **Name with only special chars**: → 400, body `{"error_code": 4, "reason": "Invalid name"}`.
-- **Missing/blank destination_url**: → 400, body `{"error_code": 4, "reason": "destination_url is required"}`.
+- **Missing/blank destination_url**: → 400, body `{"error_code": 5, "reason": "destination_url is required"}`.
 - **Invalid expiration**: → 400, body `{"error_code": 4, "reason": "invalid expiration"}`.
 - **Slugification unit tests** in `test_slugify.py`: spaces, uppercase, consecutive hyphens, special chars, edge-dash stripping, all-special → empty.

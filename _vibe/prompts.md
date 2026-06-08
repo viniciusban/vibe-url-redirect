@@ -293,3 +293,8 @@ Sorry, you were correct. The function to slugify already strips dashes from the 
 ```
 commit
 ```
+
+### commit: (this commit)
+```
+Let's organise error codes. Use 4 for name related errors. Use 5 for destination url errors. update docs as well.
+```

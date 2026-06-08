@@ -13,7 +13,7 @@ Steerer is a FastAPI service backed by PostgreSQL. Three capabilities: create na
 ### Create route — POST `/routes/`
 
 - `name`: required, strip leading/trailing whitespace; blank after strip → 400 (error_code 4, reason "name is required").
-- `destination_url`: required, strip leading/trailing whitespace; blank after strip → 400 (error_code 4, reason "destination_url is required").
+- `destination_url`: required, strip leading/trailing whitespace; blank after strip → 400 (error_code 5, reason "destination_url is required").
 - `expiration`: required, format `YYYY-MM-DD HH:mm:ss`, treated as UTC, stored without timezone; invalid format → 400 (error_code 4, reason "invalid expiration").
 - Slugify `name`: lowercase, replace non-alphanumeric chars with hyphens, collapse consecutive hyphens, strip edge hyphens → `alias` (computed field on request model).
 - Empty `alias` after slugification → 400 (error_code 4, reason "Invalid name").
@@ -40,7 +40,8 @@ Structured JSON, always INFO level. Keys: `action`, `error_code` (always), `alia
 | Case | action | error_code | alias | reason |
 |------|--------|------------|-------|--------|
 | Create – happy path | "create route" | 0 | slugified name | — |
-| Create – invalid field | "create route" | 4 | — | varies |
+| Create – name error | "create route" | 4 | — | varies |
+| Create – destination_url error | "create route" | 5 | — | varies |
 | Create – duplicate | "create route" | 1 | — | "already exists" |
 | Redirect – happy path | "redirect" | 0 | alias | — |
 | Redirect – expired | "redirect" | 2 | — | "expired" |

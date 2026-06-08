@@ -12,6 +12,7 @@ app = FastAPI()
 app.include_router(routes_router)
 
 _ACTION_BY_PATH = {"/routes/": "create route"}
+_ERROR_CODE_BY_FIELD = {"name": 4, "destination_url": 5}
 
 
 @app.exception_handler(RequestValidationError)
@@ -29,11 +30,12 @@ async def validation_exception_handler(
     else:
         reason = f"invalid {field}"
 
+    error_code = _ERROR_CODE_BY_FIELD.get(field, 4)
     action = _ACTION_BY_PATH.get(request.url.path, "unknown")
-    steerer_logging.log_action(action, 4, reason)
+    steerer_logging.log_action(action, error_code, reason)
     return JSONResponse(
         status_code=400,
-        content=InvalidFieldError(error_code=4, reason=reason).model_dump(),
+        content=InvalidFieldError(error_code=error_code, reason=reason).model_dump(),
     )
 
 

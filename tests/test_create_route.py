@@ -118,13 +118,13 @@ def test_create_route_empty_destination_url(client, caplog):
         })
 
     assert response.status_code == 400
-    assert response.json() == {"error_code": 4, "reason": "destination_url is required"}
+    assert response.json() == {"error_code": 5, "reason": "destination_url is required"}
 
     steerer_records = [r for r in caplog.records if r.name == "steerer"]
     assert len(steerer_records) == 1
     assert json.loads(steerer_records[0].message) == {
         "action": "create route",
-        "error_code": 4,
+        "error_code": 5,
         "reason": "destination_url is required",
     }
 
@@ -137,13 +137,13 @@ def test_create_route_missing_destination_url(client, caplog):
         })
 
     assert response.status_code == 400
-    assert response.json() == {"error_code": 4, "reason": "destination_url is required"}
+    assert response.json() == {"error_code": 5, "reason": "destination_url is required"}
 
     steerer_records = [r for r in caplog.records if r.name == "steerer"]
     assert len(steerer_records) == 1
     assert json.loads(steerer_records[0].message) == {
         "action": "create route",
-        "error_code": 4,
+        "error_code": 5,
         "reason": "destination_url is required",
     }
 
