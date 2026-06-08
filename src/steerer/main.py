@@ -21,7 +21,8 @@ async def validation_exception_handler(
 ) -> JSONResponse:
     errors = exc.errors()
     field = str(errors[0]["loc"][-1]) if errors else "field"
-    reason = f"invalid {field}"
+    error_type = errors[0].get("type", "") if errors else ""
+    reason = f"{field} is required" if error_type == "missing" else f"invalid {field}"
 
     alias = ""
     try:

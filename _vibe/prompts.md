@@ -165,3 +165,12 @@ yes, go ahead
 ```
 commit
 ```
+
+### commit: (this commit)
+```
+make name required in POST /routes/. Return error with reason "name is required" when missing.
+```
+
+```
+commit
+```
