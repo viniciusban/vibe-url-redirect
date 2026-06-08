@@ -14,11 +14,11 @@ router = APIRouter(prefix="/routes")
 async def create_route(request: CreateRouteRequest) -> JSONResponse:
     count = await UrlRoute.count().where(UrlRoute.alias == request.alias).run()
     if count:
-        steerer_logging.log_action("create route", request.alias, 1, "already exists")
+        steerer_logging.log_action("create route", 1, "already exists")
         return JSONResponse(
             status_code=400,
             content=DuplicateRouteError(
-                error_code=1, reason="already exists", alias=request.alias
+                error_code=1, reason="already exists"
             ).model_dump(),
         )
 
@@ -31,5 +31,5 @@ async def create_route(request: CreateRouteRequest) -> JSONResponse:
         hits=0,
     ).save().run()
 
-    steerer_logging.log_action("create route", request.alias, 0)
+    steerer_logging.log_action("create route", alias=request.alias)
     return JSONResponse(content=CreateRouteResponse(alias=request.alias).model_dump())

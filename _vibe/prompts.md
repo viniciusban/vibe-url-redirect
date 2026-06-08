@@ -248,6 +248,28 @@ commit
 
 ### commit: (this commit)
 ```
+Remove field alias from error response and log. keep in case of happy path.
+```
+
+```
+commit
+```
+
+### commit: (this commit)
+```
+Refactor log_action to make error_code with default value of 0. Don't send the error_code in happy path.
+```
+
+```
+Do not ommit error_code from JSON when it's zero.
+```
+
+```
+commit
+```
+
+### commit: (this commit)
+```
 Guarantee that an alias has at least one valid character other than a dash in POST /routes/. Otherwise, return error reason "Invalid name".
 ```
 

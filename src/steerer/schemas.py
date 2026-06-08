@@ -55,10 +55,8 @@ class CreateRouteResponse(BaseModel):
 class DuplicateRouteError(BaseModel):
     error_code: int
     reason: str
-    alias: str
 
 
 class InvalidFieldError(BaseModel):
     error_code: int
     reason: str
-    alias: str

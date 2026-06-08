@@ -17,8 +17,8 @@ def test_create_route_happy_path(client, caplog):
     assert len(steerer_records) == 1
     assert json.loads(steerer_records[0].message) == {
         "action": "create route",
-        "alias": "my-route",
         "error_code": 0,
+        "alias": "my-route",
     }
 
 
@@ -39,19 +39,15 @@ def test_create_route_duplicate(client, caplog):
         })
 
     assert response.status_code == 400
-    assert response.json() == {
-        "error_code": 1, "reason": "already exists", "alias": "my-route"
-    }
+    assert response.json() == {"error_code": 1, "reason": "already exists"}
 
     steerer_records = [r for r in caplog.records if r.name == "steerer"]
     assert len(steerer_records) == 1
     assert json.loads(steerer_records[0].message) == {
         "action": "create route",
-        "alias": "my-route",
         "error_code": 1,
         "reason": "already exists",
     }
-
 
 
 def test_create_route_empty_name(client, caplog):
@@ -63,15 +59,12 @@ def test_create_route_empty_name(client, caplog):
         })
 
     assert response.status_code == 400
-    assert response.json() == {
-        "error_code": 4, "reason": "name is required", "alias": ""
-    }
+    assert response.json() == {"error_code": 4, "reason": "name is required"}
 
     steerer_records = [r for r in caplog.records if r.name == "steerer"]
     assert len(steerer_records) == 1
     assert json.loads(steerer_records[0].message) == {
         "action": "create route",
-        "alias": "",
         "error_code": 4,
         "reason": "name is required",
     }
@@ -85,15 +78,12 @@ def test_create_route_missing_name(client, caplog):
         })
 
     assert response.status_code == 400
-    assert response.json() == {
-        "error_code": 4, "reason": "name is required", "alias": ""
-    }
+    assert response.json() == {"error_code": 4, "reason": "name is required"}
 
     steerer_records = [r for r in caplog.records if r.name == "steerer"]
     assert len(steerer_records) == 1
     assert json.loads(steerer_records[0].message) == {
         "action": "create route",
-        "alias": "",
         "error_code": 4,
         "reason": "name is required",
     }
@@ -108,17 +98,15 @@ def test_create_route_name_all_special_chars(client, caplog):
         })
 
     assert response.status_code == 400
-    assert response.json() == {"error_code": 4, "reason": "Invalid name", "alias": ""}
+    assert response.json() == {"error_code": 4, "reason": "Invalid name"}
 
     steerer_records = [r for r in caplog.records if r.name == "steerer"]
     assert len(steerer_records) == 1
     assert json.loads(steerer_records[0].message) == {
         "action": "create route",
-        "alias": "",
         "error_code": 4,
         "reason": "Invalid name",
     }
-
 
 
 def test_create_route_empty_destination_url(client, caplog):
@@ -130,15 +118,12 @@ def test_create_route_empty_destination_url(client, caplog):
         })
 
     assert response.status_code == 400
-    assert response.json() == {
-        "error_code": 4, "reason": "destination_url is required", "alias": "my-route"
-    }
+    assert response.json() == {"error_code": 4, "reason": "destination_url is required"}
 
     steerer_records = [r for r in caplog.records if r.name == "steerer"]
     assert len(steerer_records) == 1
     assert json.loads(steerer_records[0].message) == {
         "action": "create route",
-        "alias": "my-route",
         "error_code": 4,
         "reason": "destination_url is required",
     }
@@ -152,15 +137,12 @@ def test_create_route_missing_destination_url(client, caplog):
         })
 
     assert response.status_code == 400
-    assert response.json() == {
-        "error_code": 4, "reason": "destination_url is required", "alias": "my-route"
-    }
+    assert response.json() == {"error_code": 4, "reason": "destination_url is required"}
 
     steerer_records = [r for r in caplog.records if r.name == "steerer"]
     assert len(steerer_records) == 1
     assert json.loads(steerer_records[0].message) == {
         "action": "create route",
-        "alias": "my-route",
         "error_code": 4,
         "reason": "destination_url is required",
     }
@@ -175,15 +157,12 @@ def test_create_route_invalid_expiration(client, caplog):
         })
 
     assert response.status_code == 400
-    assert response.json() == {
-        "error_code": 4, "reason": "invalid expiration", "alias": "my-route"
-    }
+    assert response.json() == {"error_code": 4, "reason": "invalid expiration"}
 
     steerer_records = [r for r in caplog.records if r.name == "steerer"]
     assert len(steerer_records) == 1
     assert json.loads(steerer_records[0].message) == {
         "action": "create route",
-        "alias": "my-route",
         "error_code": 4,
         "reason": "invalid expiration",
     }
