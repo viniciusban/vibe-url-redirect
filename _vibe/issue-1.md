@@ -1,5 +1,7 @@
 # Issue 1 — Project scaffolding and development environment
 
+Completed: 2026-06-08 05:55 UTC
+
 Set up the full skeleton so development can start.
 
 ## Scope

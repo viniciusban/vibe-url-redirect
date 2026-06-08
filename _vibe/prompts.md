@@ -68,3 +68,16 @@ Before commiting, remove current `__pycache__` directories.
 ```
 commit
 ```
+
+### commit: (this commit)
+```
+Let's consider issue 1 completed. Update it with current date and time.
+```
+
+```
+Don't change its title. Add the completion statement in another paragraph.
+```
+
+```
+commit
+```
