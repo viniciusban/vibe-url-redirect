@@ -270,6 +270,15 @@ commit
 
 ### commit: (this commit)
 ```
+We have change rules for name, destination url, responses and logs. Update related documentation.
+```
+
+```
+commit
+```
+
+### commit: (this commit)
+```
 Guarantee that an alias has at least one valid character other than a dash in POST /routes/. Otherwise, return error reason "Invalid name".
 ```
 

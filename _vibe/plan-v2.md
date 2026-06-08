@@ -12,9 +12,12 @@ Steerer is a FastAPI service backed by PostgreSQL. Three capabilities: create na
 
 ### Create route — POST `/routes/`
 
-- Slugify `name`: lowercase, replace spaces and non-alphanumeric chars with hyphens, collapse consecutive hyphens → `alias`.
-- Check `alias` uniqueness → 400 + error body if duplicate (error_code 1).
-- `expiration` format: `YYYY-MM-DD HH:mm:ss`, treated as UTC, stored without timezone.
+- `name`: required, strip leading/trailing whitespace; blank after strip → 400 (error_code 4, reason "name is required").
+- `destination_url`: required, strip leading/trailing whitespace; blank after strip → 400 (error_code 4, reason "destination_url is required").
+- `expiration`: required, format `YYYY-MM-DD HH:mm:ss`, treated as UTC, stored without timezone; invalid format → 400 (error_code 4, reason "invalid expiration").
+- Slugify `name`: lowercase, replace non-alphanumeric chars with hyphens, collapse consecutive hyphens, strip edge hyphens → `alias` (computed field on request model).
+- Empty `alias` after slugification → 400 (error_code 4, reason "Invalid name").
+- Check `alias` uniqueness → 400 if duplicate (error_code 1, reason "already exists").
 - Store row with `hits=0`, `created_at=utcnow()` (no tz stored).
 - Respond 200 + `{"alias": "..."}`.
 
@@ -32,17 +35,18 @@ Steerer is a FastAPI service backed by PostgreSQL. Three capabilities: create na
 
 ### Logging (all endpoints)
 
-Structured JSON, always INFO level. Keys: `action`, `alias`, `error_code`, and optional `reason`.
+Structured JSON, always INFO level. Keys: `action`, `error_code` (always), `alias` (happy path only), `reason` (error path only).
 
-| Case | action | error_code | reason |
-|------|--------|------------|--------|
-| Create – happy path | "create route" | 0 | — |
-| Create – duplicate | "create route" | 1 | "already exists" |
-| Redirect – happy path | "redirect" | 0 | — |
-| Redirect – expired | "redirect" | 2 | "expired" |
-| Redirect – not found | "redirect" | 3 | "not found" |
-| Hit count – happy path | "hit count" | 0 | — |
-| Hit count – not found | "hit count" | 3 | "not found" |
+| Case | action | error_code | alias | reason |
+|------|--------|------------|-------|--------|
+| Create – happy path | "create route" | 0 | slugified name | — |
+| Create – invalid field | "create route" | 4 | — | varies |
+| Create – duplicate | "create route" | 1 | — | "already exists" |
+| Redirect – happy path | "redirect" | 0 | alias | — |
+| Redirect – expired | "redirect" | 2 | — | "expired" |
+| Redirect – not found | "redirect" | 3 | — | "not found" |
+| Hit count – happy path | "hit count" | 0 | alias | — |
+| Hit count – not found | "hit count" | 3 | — | "not found" |
 
 ---
 
@@ -98,10 +102,12 @@ steerer/
 │   └── steerer/
 │       ├── __init__.py
 │       ├── main.py           # FastAPI app, router registration
-│       ├── piccolo_conf.py   # DB connection config
+│       ├── engine.py         # PostgresEngine instance
+│       ├── piccolo_conf.py   # DB connection config (re-exports DB for migration CLI)
 │       ├── piccolo_app.py    # Piccolo app registry
 │       ├── tables.py         # url_route table definition
 │       ├── schemas.py        # Pydantic request/response models
+│       ├── services.py       # slugify and other pure business logic
 │       ├── logging.py        # Structured log helpers
 │       └── routers/
 │           ├── __init__.py
