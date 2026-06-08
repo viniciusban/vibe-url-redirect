@@ -134,3 +134,12 @@ Let tests for slugify separate from anything else
 ```
 commit
 ```
+
+### commit: (this commit)
+```
+I got ModuleNotFoundError: No module named 'piccolo_conf' when trying it from the command line. Please check and fix it.
+```
+
+```
+commit
+```
