@@ -143,3 +143,12 @@ I got ModuleNotFoundError: No module named 'piccolo_conf' when trying it from th
 ```
 commit
 ```
+
+### commit: (this commit)
+```
+I sent invalid expiration to POST /routes/ and got status code 422 with this body: {"detail":[{"type":"datetime_from_date_parsing","loc":["body","expiration"],"msg":"Input should be a valid datetime or date, invalid character in year","input":"invalid entry","ctx":{"error":"invalid character in year"}}]}. Change to handle this error returning a friendly error following the pattern for other errors.
+```
+
+```
+Well done. commit
+```

@@ -1,12 +1,10 @@
-from datetime import datetime
-
 from pydantic import BaseModel
 
 
 class CreateRouteRequest(BaseModel):
     name: str
     destination_url: str
-    expiration: datetime
+    expiration: str
 
 
 class CreateRouteResponse(BaseModel):
@@ -14,6 +12,12 @@ class CreateRouteResponse(BaseModel):
 
 
 class DuplicateRouteError(BaseModel):
+    error_code: int
+    reason: str
+    alias: str
+
+
+class InvalidFieldError(BaseModel):
     error_code: int
     reason: str
     alias: str
