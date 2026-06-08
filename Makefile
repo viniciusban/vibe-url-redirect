@@ -9,7 +9,7 @@ install:
 	chmod +x .git/hooks/pre-commit
 
 test:
-	uv run pytest -q $(OPT); status=$$?; [ $$status -eq 5 ] && exit 0 || exit $$status
+	PICCOLO_CONF=$(PICCOLO_CONF) uv run pytest -q $(OPT); status=$$?; [ $$status -eq 5 ] && exit 0 || exit $$status
 
 typecheck:
 	uv run mypy src/
