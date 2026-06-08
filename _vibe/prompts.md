@@ -195,6 +195,19 @@ commit
 
 ### commit: (this commit)
 ```
+Add tests to slugify to assert input with only special characters result in empty string
+```
+
+```
+Add another one to assert a result with valida characters inside, has dashes in both ends stripped
+```
+
+```
+commit
+```
+
+### commit: (this commit)
+```
 Guarantee that an alias has at least one valid character other than a dash in POST /routes/. Otherwise, return error reason "Invalid name".
 ```
 
