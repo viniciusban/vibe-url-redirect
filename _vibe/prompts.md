@@ -221,6 +221,15 @@ commit
 
 ### commit: (this commit)
 ```
+Is it possible to have a computed field in a Pydantic model? If it is, create the field alias in CreateRouteRequest. Handle it as of in create_route.
+```
+
+```
+Cool. commit
+```
+
+### commit: (this commit)
+```
 Guarantee that an alias has at least one valid character other than a dash in POST /routes/. Otherwise, return error reason "Invalid name".
 ```
 

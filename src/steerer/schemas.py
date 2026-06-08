@@ -1,12 +1,19 @@
 from datetime import datetime
 
-from pydantic import BaseModel, field_validator
+from pydantic import BaseModel, computed_field, field_validator
+
+from steerer.services import slugify
 
 
 class CreateRouteRequest(BaseModel):
     name: str
     destination_url: str
     expiration: datetime
+
+    @computed_field  # type: ignore[prop-decorator]
+    @property
+    def alias(self) -> str:
+        return slugify(self.name)
 
     @field_validator("name", mode="before")
     @classmethod

@@ -29,6 +29,7 @@ python_version = "3.14"
 ignore_missing_imports = true
 warn_return_any = true
 exclude = ["^tests/"]
+plugins = ["pydantic.mypy"]
 
 [tool.ruff]
 src = ["src"]
