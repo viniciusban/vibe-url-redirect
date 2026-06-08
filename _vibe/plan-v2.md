@@ -137,7 +137,7 @@ steerer/
 | `make migrate` | Apply pending migrations |
 | `make migration-status` | Show current applied migration |
 
-Pre-commit hook order: `make format && make lint && make typecheck` — format first so lint sees clean code.
+Pre-commit hook: `make lint && make typecheck`.
 
 ---
 

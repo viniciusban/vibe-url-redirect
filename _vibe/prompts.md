@@ -90,3 +90,16 @@ commit
 ```
 yes
 ```
+
+### commit: (this commit)
+```
+Change precommit hook to run only lint and typecheck.
+```
+
+```
+Also fix any documentation related to this.
+```
+
+```
+commit
+```

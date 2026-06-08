@@ -57,4 +57,4 @@ Tests use FastAPI's `TestClient`. No DB mocking — tests hit a real database co
 - Return early; prefer flat code over nested conditions.
 - Minimal logic in views — business logic belongs in service modules.
 - No `__pycache__` directories (`PYTHONDONTWRITEBYTECODE=1` is exported by the Makefile).
-- Pre-commit hook runs `format → lint → typecheck` in that order.
+- Pre-commit hook runs `lint → typecheck`.

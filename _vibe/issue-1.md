@@ -12,7 +12,7 @@ Set up the full skeleton so development can start.
 - **FastAPI app skeleton**: no business routes; health check at `GET /` returning 200.
 - **Piccolo config**: `piccolo_conf.py` (DB connection from env), `piccolo_app.py` (app registry).
 - **All Makefile targets wired**: `install`, `format`, `lint`, `typecheck`, `test`, `migrations`, `migrate`, `migration-status`.
-- **Pre-commit hook**: installed by `make install`; runs `make format && make lint && make typecheck`.
+- **Pre-commit hook**: installed by `make install`; runs `make lint && make typecheck`.
 
 ## Criteria of Done
 
